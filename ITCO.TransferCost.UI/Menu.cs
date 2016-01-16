@@ -21,14 +21,6 @@ namespace ITCO.TransferCost.UI
                 oCreationPackage = ((SAPbouiCOM.MenuCreationParams)(Application.SBO_Application.CreateObject(SAPbouiCOM.BoCreatableObjectType.cot_MenuCreationParams)));
                 oMenuItem = Application.SBO_Application.Menus.Item("43520"); // moudles'
 
-                //oCreationPackage.Type = SAPbouiCOM.BoMenuType.mt_POPUP;
-                //oCreationPackage.UniqueID = "mnu_Transfer";
-                //oCreationPackage.String = "ITCO Transfer";
-                //oCreationPackage.Enabled = true;
-                //oCreationPackage.Position = -1;
-                //oMenus = oMenuItem.SubMenus;
-                //oMenus.AddEx(oCreationPackage);
-
                 oMenuItem = Application.SBO_Application.Menus.Item("43540"); 
                 //oMenuItem = Application.SBO_Application.Menus.Item("mnu_Transfer");
                 oMenus = oMenuItem.SubMenus;
