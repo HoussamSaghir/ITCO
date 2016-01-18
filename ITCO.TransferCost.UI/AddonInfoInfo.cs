@@ -54,7 +54,7 @@ namespace ITCO.TransferCost.UI
                {
                    foreach (var receiptItem in receiptItemsList)
                    {
-                       B1Helper.CreateTransferGoodsReceipt(oApp, referenceNumber, receiptItem.ReceiptItemCode, Convert.ToDouble(receiptItem.Quantity), receiptItem.ToWhs, receiptItem.AddCost + (receiptItem.AvgCost / receiptItem.Quantity));
+                       B1Helper.CreateTransferGoodsReceipt(oApp, referenceNumber, receiptItem.ReceiptItemCode, Convert.ToDouble(receiptItem.Quantity), receiptItem.ToWhs, receiptItem.AvgCost + (receiptItem.AddCost / receiptItem.Quantity));
                    }
                });
 
