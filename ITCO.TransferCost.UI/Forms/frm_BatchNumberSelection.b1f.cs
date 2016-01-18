@@ -773,7 +773,7 @@ namespace ITCO.TransferCost.UI.Forms
                     Application.SBO_Application.MessageBox("Receipt Items Batches are not managed well");
                     goto Finish;
                 }
-            } SAPbobsCOM.Items h = new SAPbobsCOM.Items(); 
+            } 
             for (int i = 0; i < issueBatchDataSources.Count(); i++)
             {
                 if (issueBatchDataSources[i].SelectedBatches.Rows.Count <= 0 || issueBatchDataSources[i].TotalNeeded != 0)
