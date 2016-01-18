@@ -104,7 +104,7 @@ namespace ITCO.TransferCost.UI
                 //T_ITMTRNSFRSTUP FIELDS
                 B1Helper.AddField(FieldNames.Type, "Type", TableNames.TransferItemsSetup, SAPbobsCOM.BoFieldTypes.db_Alpha, SAPbobsCOM.BoYesNoEnum.tYES, true);
                 B1Helper.AddField(FieldNames.Code, "Code", TableNames.TransferItemsSetup, SAPbobsCOM.BoFieldTypes.db_Alpha, SAPbobsCOM.BoYesNoEnum.tYES, true);
-                B1Helper.AddField(FieldNames.Name, "Name", TableNames.TransferItemsSetup, SAPbobsCOM.BoFieldTypes.db_Alpha, SAPbobsCOM.BoYesNoEnum.tYES, true);
+                B1Helper.AddField(FieldNames.Name, "Name", TableNames.TransferItemsSetup, SAPbobsCOM.BoFieldTypes.db_Alpha, 100, SAPbobsCOM.BoYesNoEnum.tYES, true);
 
                 B1Helper.DiCompany.EndTransaction(SAPbobsCOM.BoWfTransOpt.wf_Commit);
                 var firstUdo = B1Helper.CreateUdo("UDO_ItemsTransfer", "UDO_ItemsTransfer", TableNames.TransferItems, TableNames.TransferItemsLines, TableNames.TransferAddCost);

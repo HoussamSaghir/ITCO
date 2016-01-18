@@ -1,0 +1,16 @@
+﻿<Application>
+  <Menus>
+    <action type="remove">
+      <Menu UniqueID="MNU_OPSP"></Menu>
+    </action>
+    
+    <action type="add">
+      <!-- <Menu Checked="0" Enabled="1" FatherUID="2816" Image="" Position="1" String="MultiCurrency Incoming Payment"
+				Type="1" UniqueID="DABT_521">
+      </Menu> -->
+      <Menu Checked="0" Enabled="1" FatherUID="43541" Image="" Position="" String="Special Price By Project"
+      Type="1" UniqueID="MNU_OPSP">
+      </Menu>
+    </action>
+  </Menus>
+</Application>

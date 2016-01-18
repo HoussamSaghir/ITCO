@@ -23,7 +23,7 @@ namespace ITCO.TransferCost.UI
         private SAPbouiCOM.Folder fldrCosts;
         private SAPbouiCOM.Matrix mtxItems;
         private SAPbouiCOM.Matrix mtxCost;
-        private SAPbouiCOM.Button btnCalculate;
+        //private SAPbouiCOM.Button btnCalculate;
         private SAPbouiCOM.EditText currentControl = null;
         private List<TransferItem> issTransferItemsList = new List<TransferItem>();
         private List<TransferItem> recTransferItemsList = new List<TransferItem>();
@@ -71,8 +71,8 @@ namespace ITCO.TransferCost.UI
             txtDocNo.Item.SetAutoManagedAttribute(SAPbouiCOM.BoAutoManagedAttr.ama_Editable, Convert.ToInt32(SAPbouiCOM.BoAutoFormMode.afm_Find), SAPbouiCOM.BoModeVisualBehavior.mvb_True);
             mtxItems.Item.SetAutoManagedAttribute(SAPbouiCOM.BoAutoManagedAttr.ama_Editable, Convert.ToInt32(SAPbouiCOM.BoAutoFormMode.afm_Ok), SAPbouiCOM.BoModeVisualBehavior.mvb_False);
             mtxCost.Item.SetAutoManagedAttribute(SAPbouiCOM.BoAutoManagedAttr.ama_Editable, Convert.ToInt32(SAPbouiCOM.BoAutoFormMode.afm_Ok), SAPbouiCOM.BoModeVisualBehavior.mvb_False);
-            btnCalculate.Item.SetAutoManagedAttribute(SAPbouiCOM.BoAutoManagedAttr.ama_Visible, Convert.ToInt32(SAPbouiCOM.BoAutoFormMode.afm_Ok), SAPbouiCOM.BoModeVisualBehavior.mvb_False);
-            btnCalculate.Item.SetAutoManagedAttribute(SAPbouiCOM.BoAutoManagedAttr.ama_Visible, Convert.ToInt32(SAPbouiCOM.BoAutoFormMode.afm_Find), SAPbouiCOM.BoModeVisualBehavior.mvb_False);
+            //btnCalculate.Item.SetAutoManagedAttribute(SAPbouiCOM.BoAutoManagedAttr.ama_Visible, Convert.ToInt32(SAPbouiCOM.BoAutoFormMode.afm_Ok), SAPbouiCOM.BoModeVisualBehavior.mvb_False);
+            //btnCalculate.Item.SetAutoManagedAttribute(SAPbouiCOM.BoAutoManagedAttr.ama_Visible, Convert.ToInt32(SAPbouiCOM.BoAutoFormMode.afm_Find), SAPbouiCOM.BoModeVisualBehavior.mvb_False);
             btnAddRow.Item.SetAutoManagedAttribute(SAPbouiCOM.BoAutoManagedAttr.ama_Visible, Convert.ToInt32(SAPbouiCOM.BoAutoFormMode.afm_Ok), SAPbouiCOM.BoModeVisualBehavior.mvb_False);
             btnAddRow.Item.SetAutoManagedAttribute(SAPbouiCOM.BoAutoManagedAttr.ama_Visible, Convert.ToInt32(SAPbouiCOM.BoAutoFormMode.afm_Find), SAPbouiCOM.BoModeVisualBehavior.mvb_False);
         }
@@ -102,9 +102,9 @@ namespace ITCO.TransferCost.UI
             this.mtxCost = ((SAPbouiCOM.Matrix)(this.GetItem("Item_7").Specific));
             this.mtxCost.ChooseFromListAfter += new SAPbouiCOM._IMatrixEvents_ChooseFromListAfterEventHandler(this.mtxCost_ChooseFromListAfter);
             this.mtxCost.ClickBefore += new SAPbouiCOM._IMatrixEvents_ClickBeforeEventHandler(this.mtxCost_ClickBefore);
-            this.btnCalculate = ((SAPbouiCOM.Button)(this.GetItem("btnClc").Specific));
-            this.btnCalculate.ClickAfter += new SAPbouiCOM._IButtonEvents_ClickAfterEventHandler(this.btnCalculate_ClickAfter);
-            this.btnCalculate.ClickBefore += new SAPbouiCOM._IButtonEvents_ClickBeforeEventHandler(this.btnCalculate_ClickBefore);
+            //this.btnCalculate = ((SAPbouiCOM.Button)(this.GetItem("btnClc").Specific));
+            //this.btnCalculate.ClickAfter += new SAPbouiCOM._IButtonEvents_ClickAfterEventHandler(this.btnCalculate_ClickAfter);
+            //this.btnCalculate.ClickBefore += new SAPbouiCOM._IButtonEvents_ClickBeforeEventHandler(this.btnCalculate_ClickBefore);
             this.btnAddRow = ((SAPbouiCOM.Button)(this.GetItem("btnAddRow").Specific));
             this.btnAddRow.ClickBefore += btnAddRow_ClickBefore;
             this.btnAddRow.ClickAfter += btnAddRow_ClickAfter;
@@ -527,11 +527,11 @@ namespace ITCO.TransferCost.UI
             Dictionary<object, object> argsDictionary = new Dictionary<object, object>();
         }
 
-        private void btnCalculate_ClickBefore(object sboObject, SAPbouiCOM.SBOItemEventArg pVal, out bool BubbleEvent)
-        {
-            BubbleEvent = true;
-            mtxItems.FlushToDataSource();
-        }
+        //private void btnCalculate_ClickBefore(object sboObject, SAPbouiCOM.SBOItemEventArg pVal, out bool BubbleEvent)
+        //{
+        //    BubbleEvent = true;
+        //    mtxItems.FlushToDataSource();
+        //}
 
         private void btnCalculate_ClickAfter(object sboObject, SAPbouiCOM.SBOItemEventArg pVal)
         {

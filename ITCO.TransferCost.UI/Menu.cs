@@ -30,7 +30,7 @@ namespace ITCO.TransferCost.UI
                     oMenus.RemoveEx("frm_TransferItems");
                 oMenus.AddEx(oCreationPackage);
 
-                oMenuItem = Application.SBO_Application.Menus.Item(MenuUid.ADMINISTRATION); // moudles'
+                oMenuItem = Application.SBO_Application.Menus.Item("11520"); // moudles'
                 oMenus = oMenuItem.SubMenus;
                 oCreationPackage.Type = SAPbouiCOM.BoMenuType.mt_STRING;
                 oCreationPackage.UniqueID = "frm_TransferSetup";
