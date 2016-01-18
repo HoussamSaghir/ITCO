@@ -25,12 +25,14 @@ namespace ITCO.TransferCost.UI
                 AddonInfoInfo.SetFormFilter();
                 MyMenu.AddMenuItems();
                 var bListeners = new ApplicationHandlers();
+                Application.SBO_Application.StatusBar.SetSystemMessage("Items Transfer Add-on installed successfully.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success);
                 oApp.Run();
             }
             catch (Exception ex)
             {
                 Utilities.LogException(ex);
             }
+            
         }
     }
 }

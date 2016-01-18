@@ -22,11 +22,12 @@ namespace ITCO.TransferCost.UI
                 oMenuItem = Application.SBO_Application.Menus.Item("43520"); // moudles'
 
                 oMenuItem = Application.SBO_Application.Menus.Item("43540"); 
-                //oMenuItem = Application.SBO_Application.Menus.Item("mnu_Transfer");
                 oMenus = oMenuItem.SubMenus;
                 oCreationPackage.Type = SAPbouiCOM.BoMenuType.mt_STRING;
                 oCreationPackage.UniqueID = "frm_TransferItems";
                 oCreationPackage.String = "Transfer Items";
+                if (oMenus.Exists("frm_TransferItems"))
+                    oMenus.RemoveEx("frm_TransferItems");
                 oMenus.AddEx(oCreationPackage);
 
                 oMenuItem = Application.SBO_Application.Menus.Item(MenuUid.ADMINISTRATION); // moudles'
@@ -34,6 +35,8 @@ namespace ITCO.TransferCost.UI
                 oCreationPackage.Type = SAPbouiCOM.BoMenuType.mt_STRING;
                 oCreationPackage.UniqueID = "frm_TransferSetup";
                 oCreationPackage.String = "Transfer Items Setup";
+                if (oMenus.Exists("frm_TransferSetup"))
+                    oMenus.RemoveEx("frm_TransferSetup");
                 oMenus.AddEx(oCreationPackage);
             }
             catch (Exception ex)

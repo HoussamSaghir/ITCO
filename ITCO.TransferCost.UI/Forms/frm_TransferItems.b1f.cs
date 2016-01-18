@@ -203,6 +203,7 @@ namespace ITCO.TransferCost.UI
         {
             try
             {
+                var ccc = B1Helper.DiCompany.GetNewObjectKey();
                 System.Xml.XmlDocument oXmlDoc = new System.Xml.XmlDocument();
                 oXmlDoc.LoadXml(pVal.ObjectKey);
                 var udoCode = oXmlDoc.SelectSingleNode("//UDO_ItemsTransferParams/DocEntry").InnerText;
