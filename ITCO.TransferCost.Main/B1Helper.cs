@@ -384,34 +384,34 @@ namespace ITCO.TransferCost.Main
             return CreateTransferGoodsIssue(oApplication, reference, itemCode, itemQuantity, whsCode, null);
         }
 
-        public static int CreateTransferGoodsReceipt(SAPbouiCOM.Application oApplication,string reference, string itemCode, double itemQuantity, string whsCode, double totalCost, System.Data.DataTable batchesTable)
+        public static int CreateTransferGoodsReceipt(SAPbouiCOM.Application oApplication, string reference, string itemCode, double itemQuantity, string whsCode, double totalCost, System.Data.DataTable batchesTable)
         {
             var goodsReceipt = DiCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oInventoryGenEntry) as SAPbobsCOM.Documents;
             try
-            { 
-            goodsReceipt.DocType = SAPbobsCOM.BoDocumentTypes.dDocument_Items;
-            goodsReceipt.Lines.ItemCode = itemCode;
-            goodsReceipt.Lines.Quantity = itemQuantity;
-            goodsReceipt.Lines.WarehouseCode = whsCode;
-            goodsReceipt.Lines.UnitPrice = totalCost / itemQuantity;
-            goodsReceipt.Reference2 = reference;
-            if (batchesTable != null)
             {
-                for (int i = 0; i < batchesTable.Rows.Count; i++)
+                goodsReceipt.DocType = SAPbobsCOM.BoDocumentTypes.dDocument_Items;
+                goodsReceipt.Lines.ItemCode = itemCode;
+                goodsReceipt.Lines.Quantity = itemQuantity;
+                goodsReceipt.Lines.WarehouseCode = whsCode;
+                goodsReceipt.Lines.UnitPrice = totalCost;
+                goodsReceipt.Reference2 = reference;
+                if (batchesTable != null)
                 {
-                    goodsReceipt.Lines.BatchNumbers.Quantity = Convert.ToDouble(batchesTable.Rows[i]["Selected Qty"]);
-                    goodsReceipt.Lines.BatchNumbers.BatchNumber = batchesTable.Rows[i]["Batch"].ToString();
-                    goodsReceipt.Lines.BatchNumbers.SetCurrentLine(i);
-                    goodsReceipt.Lines.BatchNumbers.Add();
+                    for (int i = 0; i < batchesTable.Rows.Count; i++)
+                    {
+                        goodsReceipt.Lines.BatchNumbers.Quantity = Convert.ToDouble(batchesTable.Rows[i]["Selected Qty"]);
+                        goodsReceipt.Lines.BatchNumbers.BatchNumber = batchesTable.Rows[i]["Batch"].ToString();
+                        goodsReceipt.Lines.BatchNumbers.SetCurrentLine(i);
+                        goodsReceipt.Lines.BatchNumbers.Add();
+                    }
                 }
-            }
-            if (goodsReceipt.Add() != 0)
-            {
-                Utilities.GetErrorMessage();
-                return 0;
-            }
-            else
-                return goodsReceipt.DocEntry;
+                if (goodsReceipt.Add() != 0)
+                {
+                    Utilities.GetErrorMessage();
+                    return 0;
+                }
+                else
+                    return goodsReceipt.DocEntry;
             }
             catch (Exception ex)
             {

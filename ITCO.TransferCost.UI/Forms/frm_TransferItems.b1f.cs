@@ -792,7 +792,7 @@ namespace ITCO.TransferCost.UI
                         AddCost = Convert.ToDouble(mtxItems.GetCellValue("AddAmount", i)),
                         IssueItemCode = mtxItems.GetCellValue("to_Item", i).ToString(),
                         ReceiptItemCode = mtxItems.GetCellValue("rec_Item", i).ToString(),
-                        Quantity = mtxItems.GetCellValue("Quantity", i).ToString(),
+                        Quantity = mtxItems.GetCellValue("Quantity", i).ToString() == string.Empty ? 1 : Convert.ToDouble(mtxItems.GetCellValue("Quantity", i)),
                         FromWhs = mtxItems.GetCellValue("FromWhs", i).ToString(),
                         ToWhs = mtxItems.GetCellValue("ToWhs", i).ToString(),
                         AvgCost = Convert.ToDouble(mtxItems.GetCellValue("AvgPrice", i))
@@ -845,7 +845,7 @@ namespace ITCO.TransferCost.UI
                         AddCost = Convert.ToDouble(mtxItems.GetCellValue("AddAmount", i)),
                         IssueItemCode = mtxItems.GetCellValue("to_Item", i).ToString(),
                         ReceiptItemCode = mtxItems.GetCellValue("rec_Item", i).ToString(),
-                        Quantity = mtxItems.GetCellValue("Quantity", i).ToString(),
+                        Quantity = mtxItems.GetCellValue("Quantity", i).ToString() == string.Empty ? 1 : Convert.ToDouble(mtxItems.GetCellValue("Quantity", i)),
                         FromWhs = mtxItems.GetCellValue("FromWhs", i).ToString(),
                         ToWhs = mtxItems.GetCellValue("ToWhs", i).ToString(),
                         AvgCost = Convert.ToDouble(mtxItems.GetCellValue("AvgPrice", i))

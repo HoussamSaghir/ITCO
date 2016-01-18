@@ -12,7 +12,7 @@ namespace ITCO.TransferCost.Main
         public string ReceiptItemCode { get; set; }
         public string FromWhs { get; set; }
         public string ToWhs { get; set; }
-        public string Quantity { get; set; }
+        public double Quantity { get; set; }
         public double AddCost { get; set; }
         public double AvgCost { get; set; }
         public TransferItem()

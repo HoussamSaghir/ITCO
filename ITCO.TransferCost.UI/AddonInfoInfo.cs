@@ -47,14 +47,14 @@ namespace ITCO.TransferCost.UI
                         {
                             foreach (var ds in receiptBatchDSList)
                             {
-                                B1Helper.CreateTransferGoodsReceipt(oApp, referenceNumber, ds.ItemCode, Convert.ToDouble(ds.Quantity), ds.WhsCode, ds.AddAmount + ds.AvgPrice, ds.SelectedBatches);
+                                B1Helper.CreateTransferGoodsReceipt(oApp, referenceNumber, ds.ItemCode, Convert.ToDouble(ds.Quantity), ds.WhsCode, (ds.AddAmount/ds.Quantity) + ds.AvgPrice, ds.SelectedBatches);
                             }
                         });
                 Task t4 = Task.Run(delegate()
                {
                    foreach (var receiptItem in receiptItemsList)
                    {
-                       B1Helper.CreateTransferGoodsReceipt(oApp, referenceNumber, receiptItem.ReceiptItemCode, Convert.ToDouble(receiptItem.Quantity), receiptItem.ToWhs, receiptItem.AddCost + receiptItem.AvgCost);
+                       B1Helper.CreateTransferGoodsReceipt(oApp, referenceNumber, receiptItem.ReceiptItemCode, Convert.ToDouble(receiptItem.Quantity), receiptItem.ToWhs, receiptItem.AddCost + (receiptItem.AvgCost / receiptItem.Quantity));
                    }
                });
 
