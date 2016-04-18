@@ -20,10 +20,15 @@ namespace ITCO.TransferCost.UI
                     oApp = new Application();
                 else
                     oApp = new Application(args[0]);
+                Application.SBO_Application.StatusBar.SetSystemMessage("Start installing UDO's", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success);
                 AddonInfoInfo.InstallUDOs();
+                Application.SBO_Application.StatusBar.SetSystemMessage("UDO's installed successfully", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success);
                 Menu MyMenu = new Menu();
                 AddonInfoInfo.SetFormFilter();
+                Application.SBO_Application.StatusBar.SetSystemMessage("Adding menus", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success);
                 MyMenu.AddMenuItems();
+                Application.SBO_Application.StatusBar.SetSystemMessage("Menus Added Successfully", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success);
+                Application.SBO_Application.StatusBar.SetSystemMessage("Register listeners", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success);
                 var bListeners = new ApplicationHandlers();
                 Application.SBO_Application.StatusBar.SetSystemMessage("Items Transfer Add-on installed successfully.", SAPbouiCOM.BoMessageTime.bmt_Short, SAPbouiCOM.BoStatusBarMessageType.smt_Success);
                 oApp.Run();

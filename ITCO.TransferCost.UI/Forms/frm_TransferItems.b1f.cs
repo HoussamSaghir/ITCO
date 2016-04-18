@@ -619,70 +619,141 @@ namespace ITCO.TransferCost.UI
         #endregion
 
         #region PRIVATE METHODS
-        private async void CalculateCostPercentage()
+        //private async void CalculateCostPercentage()
+        //{
+        //    try
+        //    {
+        //        //Action action = new Action(delegate()
+        //        //{
+        //            double totalWeight = 0;
+        //            double totalAmount = 0;
+        //            double totalQuantity = 0;
+
+        //            for (int i = 0; i < mtxCost.RowCount; i++)
+        //            {
+        //                var itmType = ((dynamic)mtxCost.GetCellSpecific("Type", i + 1)).Value;
+        //                var itmCost = ((dynamic)mtxCost.GetCellSpecific("Cost", i + 1)).Value;
+
+        //                var itmDoubleCost = itmCost == string.Empty ? 0 : Convert.ToDouble(itmCost);
+        //                if (itmType.Equals("Weight"))
+        //                    totalWeight += itmDoubleCost;
+        //                else if (itmType.Equals("Amount"))
+        //                    totalAmount += itmDoubleCost;
+        //                else
+        //                    totalQuantity += itmDoubleCost;
+        //            }
+
+        //            SAPbobsCOM.Items oItem = AddonInfoInfo.GetNewBOneItem();
+        //            List<AddonInfoInfo> itemsList = new List<AddonInfoInfo>();
+
+        //            double totalItemsAmount = 0;
+        //            double totalItemsAvgPrice = 0;
+        //            double totalItemsWeightPrice = 0;
+        //            double totalItemQuantity = 0;
+
+        //            for (int i = 0; i < mtxItems.RowCount; i++)
+        //            {
+        //                var itmCode = ((dynamic)mtxItems.GetCellSpecific("to_Item", i + 1)).Value;
+        //                oItem.GetByKey(itmCode);
+        //                var oPriceList = oItem.PriceList;
+        //                var quantity = ((dynamic)mtxItems.GetCellSpecific("Quantity", i + 1)).Value;
+        //                var itmQuantity = Convert.ToDouble(quantity == string.Empty ? 0 : quantity);
+        //                var amount = oItem.MovingAveragePrice * Convert.ToDouble(itmQuantity);
+        //                var avgPrice = oItem.MovingAveragePrice;
+        //                var itemWeight = oItem.PurchaseUnitWeight;
+
+        //                totalItemsAmount += amount;
+        //                totalItemsAvgPrice += avgPrice;
+        //                totalItemsWeightPrice += itemWeight;
+        //                totalItemQuantity += itmQuantity;
+
+        //                var itemInfo = new AddonInfoInfo() { Index = i + 1, ItemWeight = itemWeight, AveragePrice = avgPrice, Amount = amount, Quantity = itmQuantity };
+        //                itemsList.Add(itemInfo);
+        //            }
+        //            var ds = this.UIAPIRawForm.DataSources.DBDataSources.Item(string.Format("@{0}", TableNames.TransferItemsLines));
+
+        //            foreach (var v in itemsList)
+        //            {
+        //                var itemWeightPercentage = totalItemsWeightPrice == 0 ? 0 : v.ItemWeight * totalWeight / totalItemsWeightPrice;
+        //                var itemAmountPercentage = totalItemsAmount == 0 ? 0 : v.Amount * totalAmount / totalItemsAmount;
+        //                var itemQuantityPercentage = v.Quantity * totalQuantity / totalItemQuantity;
+        //                ds.SetValue("U_AddCost", v.Index - 1, (itemWeightPercentage + itemAmountPercentage + itemQuantityPercentage).ToString());
+        //            }
+        //            mtxItems.LoadFromDataSource();
+        //        //});
+
+        //        //await Task.Run(action);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Utilities.LogException(ex);
+        //    }
+        //}
+
+        private void CalculateCostPercentage()
         {
             try
             {
-                Action action = new Action(delegate()
+                //Action action = new Action(delegate()
+                //{
+                double totalWeight = 0;
+                double totalAmount = 0;
+                double totalQuantity = 0;
+
+                for (int i = 0; i < mtxCost.RowCount; i++)
                 {
-                    double totalWeight = 0;
-                    double totalAmount = 0;
-                    double totalQuantity = 0;
+                    var itmType = ((dynamic)mtxCost.GetCellSpecific("Type", i + 1)).Value;
+                    var itmCost = ((dynamic)mtxCost.GetCellSpecific("Cost", i + 1)).Value;
 
-                    for (int i = 0; i < mtxCost.RowCount; i++)
-                    {
-                        var itmType = ((dynamic)mtxCost.GetCellSpecific("Type", i + 1)).Value;
-                        var itmCost = ((dynamic)mtxCost.GetCellSpecific("Cost", i + 1)).Value;
+                    var itmDoubleCost = itmCost == string.Empty ? 0 : Convert.ToDouble(itmCost);
+                    if (itmType.Equals("Weight"))
+                        totalWeight += itmDoubleCost;
+                    else if (itmType.Equals("Amount"))
+                        totalAmount += itmDoubleCost;
+                    else
+                        totalQuantity += itmDoubleCost;
+                }
 
-                        var itmDoubleCost = itmCost == string.Empty ? 0 : Convert.ToDouble(itmCost);
-                        if (itmType.Equals("Weight"))
-                            totalWeight += itmDoubleCost;
-                        else if (itmType.Equals("Amount"))
-                            totalAmount += itmDoubleCost;
-                        else
-                            totalQuantity += itmDoubleCost;
-                    }
+                SAPbobsCOM.Items oItem = AddonInfoInfo.GetNewBOneItem();
+                List<AddonInfoInfo> itemsList = new List<AddonInfoInfo>();
 
-                    SAPbobsCOM.Items oItem = AddonInfoInfo.GetNewBOneItem();
-                    List<AddonInfoInfo> itemsList = new List<AddonInfoInfo>();
+                double totalItemsAmount = 0;
+                double totalItemsAvgPrice = 0;
+                double totalItemsWeightPrice = 0;
+                double totalItemQuantity = 0;
 
-                    double totalItemsAmount = 0;
-                    double totalItemsAvgPrice = 0;
-                    double totalItemsWeightPrice = 0;
-                    double totalItemQuantity = 0;
+                for (int i = 0; i < mtxItems.RowCount; i++)
+                {
+                    var itmCode = ((dynamic)mtxItems.GetCellSpecific("to_Item", i + 1)).Value;
+                    oItem.GetByKey(itmCode);
+                    var oPriceList = oItem.PriceList;
+                    var quantity = ((dynamic)mtxItems.GetCellSpecific("Quantity", i + 1)).Value;
+                    var itmQuantity = Convert.ToDouble(quantity == string.Empty ? 0 : quantity);
+                    var amount = oItem.MovingAveragePrice * Convert.ToDouble(itmQuantity);
+                    var avgPrice = oItem.MovingAveragePrice;
+                    var itemWeight = oItem.PurchaseUnitWeight;
 
-                    for (int i = 0; i < mtxItems.RowCount; i++)
-                    {
-                        var itmCode = ((dynamic)mtxItems.GetCellSpecific("to_Item", i + 1)).Value;
-                        oItem.GetByKey(itmCode);
-                        var oPriceList = oItem.PriceList;
-                        var quantity = ((dynamic)mtxItems.GetCellSpecific("Quantity", i + 1)).Value;
-                        var itmQuantity = Convert.ToDouble(quantity == string.Empty ? 0 : quantity);
-                        var amount = oItem.MovingAveragePrice * Convert.ToDouble(itmQuantity);
-                        var avgPrice = oItem.MovingAveragePrice;
-                        var itemWeight = oItem.PurchaseUnitWeight;
+                    totalItemsAmount += amount;
+                    totalItemsAvgPrice += avgPrice;
+                    totalItemsWeightPrice += itemWeight;
+                    totalItemQuantity += itmQuantity;
 
-                        totalItemsAmount += amount;
-                        totalItemsAvgPrice += avgPrice;
-                        totalItemsWeightPrice += itemWeight;
-                        totalItemQuantity += itmQuantity;
+                    var itemInfo = new AddonInfoInfo() { Index = i + 1, ItemWeight = itemWeight, AveragePrice = avgPrice, Amount = amount, Quantity = itmQuantity };
+                    itemsList.Add(itemInfo);
+                }
+                var ds = this.UIAPIRawForm.DataSources.DBDataSources.Item(string.Format("@{0}", TableNames.TransferItemsLines));
 
-                        var itemInfo = new AddonInfoInfo() { Index = i + 1, ItemWeight = itemWeight, AveragePrice = avgPrice, Amount = amount, Quantity = itmQuantity };
-                        itemsList.Add(itemInfo);
-                    }
-                    var ds = this.UIAPIRawForm.DataSources.DBDataSources.Item(string.Format("@{0}", TableNames.TransferItemsLines));
+                foreach (var v in itemsList)
+                {
+                    var itemWeightPercentage = totalItemsWeightPrice == 0 ? 0 : v.ItemWeight * totalWeight / totalItemsWeightPrice;
+                    var itemAmountPercentage = totalItemsAmount == 0 ? 0 : v.Amount * totalAmount / totalItemsAmount;
+                    var itemQuantityPercentage = v.Quantity * totalQuantity / totalItemQuantity;
+                    ds.SetValue("U_AddCost", v.Index - 1, (itemWeightPercentage + itemAmountPercentage + itemQuantityPercentage).ToString());
+                }
+                mtxItems.LoadFromDataSource();
+                //});
 
-                    foreach (var v in itemsList)
-                    {
-                        var itemWeightPercentage = totalItemsWeightPrice == 0 ? 0 : v.ItemWeight * totalWeight / totalItemsWeightPrice;
-                        var itemAmountPercentage = totalItemsAmount == 0 ? 0 : v.Amount * totalAmount / totalItemsAmount;
-                        var itemQuantityPercentage = v.Quantity * totalQuantity / totalItemQuantity;
-                        ds.SetValue("U_AddCost", v.Index - 1, (itemWeightPercentage + itemAmountPercentage + itemQuantityPercentage).ToString());
-                    }
-                    mtxItems.LoadFromDataSource();
-                });
-
-                await Task.Run(action);
+                //await Task.Run(action);
             }
             catch (Exception ex)
             {
